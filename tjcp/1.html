@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+	<style>
+		.a{
+				font-family: MicrosoftYaHei;
+				width:100%;
+				height: 890px;
+				background:url(./img/bj.jpg)no-repeat center center;
+				background-size: cover;
+				position: relative;
+				display: inline-block;
+				color: #fff;
+				text-align: center;
+				
+			}
+			.a h1{
+				font-size: 60px;
+				margin: 150px 0px 56px;
+				line-height: 64px;
+				letter-spacing:50px;
+			}
+			.a form{
+				font-size: 100px;
+			}
+			.a p{
+				font-size: 30px;
+				width: 828px;
+				line-height: 20px;
+				margin:0 auto;
+			}
+			</style>
+	<script type="text/jsscript"> 
+	function uploadPic() { 
+  var form = document.getElementById('upload'), 
+    formData = new FormData(form); 
+  $.ajax({ 
+   url:"https://sscpre.boe.com/v1/medical-console/medical/file/upload", 
+   type:"post", 
+   data:formData, 
+   processData:false, 
+   contentType:false, 
+   success:function(res){ 
+    if(res){ 
+     alert("上传成功！"); 
+    } 
+    console.log(res); 
+    $("#pic").val(""); 
+    $(".showUrl").html(res); 
+    $(".showPic").attr("src",res); 
+   }, 
+   error:function(err){ 
+    alert("网络连接失败,稍后重试",err); 
+   } 
+  
+  }) 
+  
+ }
+ </script>
+</head>
+<body>
+<div class="a">
+<h1>在线词频统计</h1>
+<p>请导入要统计的文件</p>
+<form  enctype="multipart/form-data" method="post"> 
+ <input type="file" name="file" id="pic" style="width: 600px;height: 50px;background-color: white;"/> 
+ <input type="button" value="提交" onclick="self.location='./java/Count.java'" style="width: 100px;height: 50px;background-color: azure;" /> 
+ </form> 
+</div>
+</body>
+</html>

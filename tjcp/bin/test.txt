@@ -1,0 +1,16 @@
+	int num;
+		
+		try{
+			FileReader in = new FileReader("test.java");
+			while ((a = in.read()) != -1)
+			{
+				ch = (char)a;
+				for(int i=0; i<26; i++)
+				{
+					c = (char)('a'+i);
+					if (ch == c)
+					{
+						num1[i]++;
+						break;
+					}
+					c = (char)('A'+i);
